@@ -87,7 +87,9 @@ dash::mpd::BaseUrl*                         Node::ToBaseUrl             ()  cons
     }
     else 
     {
+        std::cout << "Adding localhost:8000 to list of BaseUrls" << std::endl;
         baseUrl->SetUrl(this->GetText());
+        baseUrl->SetUrl("0.0.0.0:8000");
     }
 
     baseUrl->AddRawAttributes(this->attributes);
@@ -753,6 +755,7 @@ dash::mpd::MPD*                             Node::ToMPD                 ()  cons
         if (subNodes.at(i)->GetName() == "ProgramInformation")
         {
             mpd->AddProgramInformation(subNodes.at(i)->ToProgramInformation());
+            mpd->AddBaseUrl(subNodes.at(i)->ToBaseUrl());
             continue;
         }
         if (subNodes.at(i)->GetName() == "BaseURL")

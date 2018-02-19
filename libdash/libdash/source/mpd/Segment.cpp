@@ -31,7 +31,7 @@ Segment::~Segment   ()
 bool                Segment::Init               (const std::vector<IBaseUrl *>& baseurls, const std::string &uri, const std::string &range, HTTPTransactionType type)
 {
     std::string host        = "";
-    size_t      port        = 80;
+    size_t      port        = 8000;
     std::string path        = "";
     size_t      startByte   = 0;
     size_t      endByte     = 0;
@@ -43,7 +43,8 @@ bool                Segment::Init               (const std::vector<IBaseUrl *>& 
 
     this->absoluteuri = Path::CombinePaths(this->absoluteuri, uri);
 
-    if (uri != "" && dash::helpers::Path::GetHostPortAndPath(this->absoluteuri, host, port, path))
+    //if (uri != "" && dash::helpers::Path::GetHostPortAndPath(this->absoluteuri, host, port, path))
+    if (uri != "")
     {
         this->host = host;
         this->port = port;

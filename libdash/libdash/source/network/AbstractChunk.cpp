@@ -62,6 +62,7 @@ bool    AbstractChunk::StartDownload                ()
 
     this->stateManager.State(IN_PROGRESS);
 
+    std::cout << "I'm downlading bro" << std::endl;
     return true;
 }
 bool    AbstractChunk::StartDownload                (IConnection *connection)
@@ -152,10 +153,15 @@ void*   AbstractChunk::DownloadInternalConnection   (void *abstractchunk)
     curl_easy_cleanup(chunk->curl);
     curl_global_cleanup();
 
-    if(chunk->stateManager.State() == REQUEST_ABORT)
+    if(chunk->stateManager.State() == REQUEST_ABORT){
+        std::cout << "WHYYYY aborting?" << std::endl;
         chunk->stateManager.State(ABORTED);
-    else
+    }
+    else{
+        std::cout << "Bytes downloaded: " << chunk->bytesDownloaded << std::endl;
+        std::cout << "Thank god completed." << std::endl;
         chunk->stateManager.State(COMPLETED);
+    }
 
     chunk->blockStream.SetEOS(true);
 

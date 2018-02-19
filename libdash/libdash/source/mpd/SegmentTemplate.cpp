@@ -143,6 +143,7 @@ ISegment*           SegmentTemplate::ToSegment                      (const std::
 {
     Segment *seg = new Segment();
 
+    // std::cout << "WALALALALALA  " << uri << "  " << baseurls[0]->GetUrl() << std::endl;
     if(seg->Init(baseurls, ReplaceParameters(uri, representationID, bandwidth, number, time), "", type))
         return seg;
 
